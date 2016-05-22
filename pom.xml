@@ -68,7 +68,11 @@
     <version>1.2.0</version>
 </dependency>
 	
-	
+	<dependency>
+<groupId>cglib</groupId>
+<artifactId>cglib</artifactId>
+<version>2.2.2</version>
+</dependency>
 	<dependency>
 		<groupId>redis.clients</groupId>
 		<artifactId>jedis</artifactId>
@@ -117,7 +121,7 @@
                 
                 <configuration>
                     <executable>maven</executable>
-                    <mainClass>a.ApiServerMain</mainClass>
+                    <mainClass>domi.ApiServerMain</mainClass>
                     <encoding>UTF-8</encoding>
                 </configuration>
                 

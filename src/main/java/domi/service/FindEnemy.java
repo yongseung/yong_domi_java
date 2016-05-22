@@ -34,10 +34,10 @@ public class FindEnemy extends ApiRequestTemplate {
             throw new RequestParamException("userNo이 없습니다.");
         }
         if (StringUtils.isEmpty(this.reqData.get("era"))) {
-            throw new RequestParamException("userNo이 없습니다.");
+            throw new RequestParamException("era이 없습니다.");
         }
         if (StringUtils.isEmpty(this.reqData.get("score"))) {
-            throw new RequestParamException("userNo이 없습니다.");
+            throw new RequestParamException("score이 없습니다.");
         }
 
     }

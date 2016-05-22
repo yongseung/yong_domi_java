@@ -6,6 +6,13 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.springframework.util.StringUtils;
 
 import com.google.gson.JsonObject;
@@ -20,48 +27,68 @@ import redis.clients.jedis.Transaction;
 
 @Service("userUpdate")
 @Scope("prototype")
+@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { ServiceException.class })
+
 public class UserUpdate extends ApiRequestTemplate {
 
-	//every some conditinal event 
-	//this service provided
-	
-    @Autowired
-    private SqlSession sqlSession;
+	// every some conditinal event
+	// this service provided
 
-   
-    public UserUpdate(Map<String, String> reqData) {
-        super(reqData);
-    }
+	@Autowired
+	private SqlSession sqlSession;
 
-    public void requestParamValidation() throws RequestParamException {
-        if (StringUtils.isEmpty(this.reqData.get("userNo"))) {
-            throw new RequestParamException("userNo이 없습니다.");
-        }
+	@Autowired
+	private PlatformTransactionManager transactionManager;
 
-        if (StringUtils.isEmpty(this.reqData.get("password"))) {
-            throw new RequestParamException("password가 없습니다.");
-        }
-    }
+	DefaultTransactionDefinition def = null;
+	TransactionStatus status = null;
 
-    public void service() throws ServiceException {
-    	//db 작업해주기
-    	  try {
-              Map<String, Object> result = sqlSession.selectOne("users.userInfoByPassword", this.reqData);
+	public UserUpdate(Map<String, String> reqData) {
+		super(reqData);
+	}
 
-              if (result != null) {
-                  this.apiResult.addProperty("resultCode", "200");
-                  this.apiResult.addProperty("message", "Success");
-              }
-              else {
-                  this.apiResult.addProperty("resultCode", "404");
-              }
-          }
-          catch (Exception e) {
-        	  //database error
-              this.apiResult.addProperty("resultCode", "404");
+	public void requestParamValidation() throws RequestParamException {
+		if (StringUtils.isEmpty(this.reqData.get("UUID"))) {
+			throw new RequestParamException("UUID이 없습니다.");
+		}
+	}
 
-          }
+	public void service() throws ServiceException {
+
+		// db 작업해주기
+		// sqlSession.update("users.userUpdateByUUID", this.reqData);
+
+		try {
+
+			def = new DefaultTransactionDefinition();
+			def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+			status = transactionManager.getTransaction(def);
+			
+			sqlSession.update("users.userUpdateByUUID", this.reqData);
+			sqlSession.update("users.userUpdateByUUID", this.reqData);
 
 
-    }
+			Map<String, Object> result = sqlSession.selectOne("users.userInfoByUUID", this.reqData);
+			if (result != null) {
+				this.apiResult.addProperty("userName", String.valueOf(result.get("USERNAME")));
+				this.apiResult.addProperty("money", String.valueOf(result.get("MONEY")));
+				this.apiResult.addProperty("food", String.valueOf(result.get("FOOD")));
+				this.apiResult.addProperty("score", String.valueOf(result.get("SCORE")));
+			}
+
+			this.apiResult.addProperty("resultCode", "200");
+			this.apiResult.addProperty("message", "Success");
+
+			transactionManager.commit(status);
+			// throw new ServiceException();
+		}
+
+		catch (Exception e) {
+			// database error
+			transactionManager.rollback(status);
+			logger.catching(e);
+			this.apiResult.addProperty("resultCode", "404");
+		}
+
+	}
 }

@@ -18,12 +18,15 @@ public class ServiceDispatcher {
         ServiceDispatcher.springContext = springContext;
     }
 
-    protected Logger logger = LogManager.getLogger(this.getClass());
+    static Logger logger = LogManager.getLogger(ServiceDispatcher.class.getName());
 
+  
     public static ApiRequest dispatch(Map<String, String> requestMap) {
         String serviceUri = requestMap.get("REQUEST_URI");
         String beanName = null;
-
+        
+      
+        
         if (serviceUri == null) {
             beanName = "notFound";
         }
@@ -44,27 +47,27 @@ public class ServiceDispatcher {
             String httpMethod = requestMap.get("REQUEST_METHOD");
             if(httpMethod=="POST")
             {
-            	System.out.println("login : post");
+            	System.out.println("user : post");
                 beanName = "userAccess";
 
             }
         }
         
-        else if (serviceUri.startsWith("/results")) {
+        else if (serviceUri.startsWith("/resultSend")) {
             String httpMethod = requestMap.get("REQUEST_METHOD");
             if(httpMethod=="POST")
             {
-            	System.out.println("login : post");
+            	System.out.println("results send : post");
                 beanName = "resultSend";
 
             }
         }
-        else if (serviceUri.startsWith("/up")) {
+        else if (serviceUri.startsWith("/update")) {
             String httpMethod = requestMap.get("REQUEST_METHOD");
             if(httpMethod=="POST")
             {
+            	System.out.println("update : post");
                 beanName = "userUpdate";
-
             }
         }
         
@@ -81,6 +84,7 @@ public class ServiceDispatcher {
         }
         catch (Exception e) {
             e.printStackTrace();
+            logger.catching(e);
             service = (ApiRequest) springContext.getBean("notFound", requestMap);
         }
 

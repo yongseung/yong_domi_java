@@ -12,7 +12,7 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
 public class JedisHelper {
-    protected static final String REDIS_HOST = "localhost";
+    protected static final String REDIS_HOST = "192.168.219.7";
     protected static final int REDIS_PORT = 6379;
     public final Set<Jedis> connectionList = new HashSet<Jedis>();
     public final JedisPool pool;
@@ -38,7 +38,7 @@ public class JedisHelper {
         Jedis jedis = pool.getResource();
         jedis.set("foo", "bar");
         jedis.set("aa", "bb");
-        String value = jedis.get("foo");
+        String value = jedis.get("yong");
         System.out.println(value);
 
         
