@@ -1,5 +1,5 @@
 #surefire
-#Mon May 23 13:33:11 KST 2016
+#Mon May 23 14:59:22 KST 2016
 enableAssertions=true
 testSuiteDefinitionTestSourceDirectory=C\:\\Users\\webpd\\workspace\\project\\yong_domi_java\\src\\test\\java
 surefireClassPathUrl.1=C\:\\Users\\webpd\\.m2\\repository\\org\\apache\\maven\\surefire\\surefire-api\\2.12.4\\surefire-api-2.12.4.jar
