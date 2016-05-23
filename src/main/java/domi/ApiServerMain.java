@@ -15,7 +15,7 @@ public class ApiServerMain {
             springContext.registerShutdownHook();
 
             ApiServer server = springContext.getBean(ApiServer.class);
-            System.out.println("server on");
+            System.out.println("redis on");
             final JedisHelper helper = JedisHelper.getInstance();
             Jedis jedis = null;
             

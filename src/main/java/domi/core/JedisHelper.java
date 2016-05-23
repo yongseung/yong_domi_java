@@ -12,7 +12,7 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
 public class JedisHelper {
-    protected static final String REDIS_HOST = "192.168.219.7";
+    protected static final String REDIS_HOST = "52.79.108.26";
     protected static final int REDIS_PORT = 6379;
     public final Set<Jedis> connectionList = new HashSet<Jedis>();
     public final JedisPool pool;
