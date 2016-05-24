@@ -1,5 +1,6 @@
 package domi.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -31,16 +32,19 @@ public class UserAccess extends ApiRequestTemplate {
 		try {
 
 			Map<String, Object> result = sqlSession.selectOne("users.userInfoByUUID", this.reqData);
+				
+			//List<Object> t = sqlSession.selectList("users.userList");
+			
 			if (result != null) {
 
 				System.out.println(result.toString());
 
 				this.apiResult.addProperty("resultCode", "200");
 				this.apiResult.addProperty("message", "Success");
-				this.apiResult.addProperty("userName", String.valueOf(result.get("USERNAME")));
-				this.apiResult.addProperty("money", String.valueOf(result.get("MONEY")));
-				this.apiResult.addProperty("food", String.valueOf(result.get("FOOD")));
-				this.apiResult.addProperty("score", String.valueOf(result.get("SCORE")));
+				this.apiResult.addProperty("userName", result.toString());
+			//	this.apiResult.addProperty("money", String.valueOf(result.get("MONEY")));
+			//	this.apiResult.addProperty("food", String.valueOf(result.get("FOOD")));
+			//	this.apiResult.addProperty("score", String.valueOf(result.get("SCORE")));
 
 			} else {
 				this.apiResult.addProperty("resultCode", "404");

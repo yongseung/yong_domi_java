@@ -43,12 +43,8 @@ public class ResultSend extends ApiRequestTemplate {
             throw new RequestParamException("enemyUUID이 없습니다.");
         }
 
-        if (StringUtils.isEmpty(this.reqData.get("ACQUIREMONEY"))) {
+        if (StringUtils.isEmpty(this.reqData.get("ACQUIREGOLD"))) {
             throw new RequestParamException("money이 없습니다.");
-        }
-        
-        if (StringUtils.isEmpty(this.reqData.get("ACQUIREFOOD"))) {
-            throw new RequestParamException("food이 없습니다.");
         }
         
         if (StringUtils.isEmpty(this.reqData.get("ACQUIRESCORE"))) {
@@ -56,13 +52,10 @@ public class ResultSend extends ApiRequestTemplate {
         }
         
         
-        if (StringUtils.isEmpty(this.reqData.get("LOSTMONEY"))) {
+        if (StringUtils.isEmpty(this.reqData.get("LOSTGOLD"))) {
             throw new RequestParamException("lostmoney이 없습니다.");
         }
         
-        if (StringUtils.isEmpty(this.reqData.get("LOSTFOOD"))) {
-            throw new RequestParamException("LOSTFOOD이 없습니다.");
-        }
         
         if (StringUtils.isEmpty(this.reqData.get("LOSTSCORE"))) {
             throw new RequestParamException("LOSTSCORE이 없습니다.");
@@ -96,13 +89,10 @@ public class ResultSend extends ApiRequestTemplate {
 			sqlSession.update("users.userUpdateByEnemyResult", this.reqData);
 
 
-			/*Map<String, Object> result = sqlSession.selectOne("users.userInfoByUUID", this.reqData);
+			Map<String, Object> result = sqlSession.selectOne("users.userInfoByUUID", this.reqData);
 			if (result != null) {
-				this.apiResult.addProperty("userName", String.valueOf(result.get("USERNAME")));
-				this.apiResult.addProperty("money", String.valueOf(result.get("MONEY")));
-				this.apiResult.addProperty("food", String.valueOf(result.get("FOOD")));
-				this.apiResult.addProperty("score", String.valueOf(result.get("SCORE")));
-			}*/
+					this.apiResult.addProperty("score", result.toString());
+			}
 
 			this.apiResult.addProperty("resultCode", "200");
 			this.apiResult.addProperty("message", "Success");

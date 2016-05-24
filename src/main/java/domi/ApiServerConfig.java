@@ -11,7 +11,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 @Configuration
-@ImportResource("classpath:spring/hsqlApplicationContext.xml")
+@ImportResource("classpath:spring/springApplicationContext.xml")
 @ComponentScan("domi.core,domi,domi.service")
 @PropertySource("classpath:domi.properties")
 

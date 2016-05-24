@@ -18,11 +18,13 @@
  
     <context:component-scan base-package="domi.service" />
 
-	<jdbc:embedded-database id="dataSource" type="HSQL">
-		<jdbc:script location="classpath:db/sql/create-table.sql" />
-		<jdbc:script location="classpath:db/sql/insert-data.sql" />
-	</jdbc:embedded-database>
- 
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://test.cgzpdlmn7ens.ap-northeast-2.rds.amazonaws.com:3306/clash" />
+        <property name="username" value="t" />
+        <property name="password" value="testtest" />
+	</bean>
     
     
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

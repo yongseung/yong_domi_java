@@ -23,13 +23,12 @@ public abstract class ApiRequestTemplate implements ApiRequest {
         this.apiResult = new JsonObject();
         this.reqData = reqData;
 
-        logger.info("request data : " + this.reqData);
+      //  logger.info("request data : " + this.reqData);
     }
 
     public void executeService() {
         try {
             this.requestParamValidation();
-
             this.service();
         }
         catch (RequestParamException e) {

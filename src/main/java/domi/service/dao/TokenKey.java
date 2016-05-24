@@ -14,13 +14,10 @@ public class TokenKey implements KeyMaker {
         this.email = email;
         this.issueDate = issueDate;
     }
-
   
     @Override
     public String getKey() {
         String source = email + String.valueOf(issueDate);
-
-
         return Long.toString(MurmurHash.hash64A(source.getBytes(), SEED_MURMURHASH), 16);
     }
 }

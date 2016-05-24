@@ -2,9 +2,9 @@ C:\Users\webpd\workspace\project\yong_domi_java\src\main\java\domi\service\Reque
 C:\Users\webpd\workspace\project\yong_domi_java\src\main\java\domi\core\ApiRequest.java
 C:\Users\webpd\workspace\project\yong_domi_java\src\main\java\domi\service\dao\TokenKey.java
 C:\Users\webpd\workspace\project\yong_domi_java\src\main\java\domi\ApiServerMain.java
+C:\Users\webpd\workspace\project\yong_domi_java\src\main\java\domi\service\ShowMyRanking.java
 C:\Users\webpd\workspace\project\yong_domi_java\src\main\java\domi\service\TryLogin.java
 C:\Users\webpd\workspace\project\yong_domi_java\src\main\java\domi\core\ApiRequestTemplate.java
-C:\Users\webpd\workspace\project\yong_domi_java\src\main\java\domi\service\dao\HsqlDataSource.java
 C:\Users\webpd\workspace\project\yong_domi_java\src\main\java\domi\ApiServer.java
 C:\Users\webpd\workspace\project\yong_domi_java\src\main\java\domi\core\KeyMaker.java
 C:\Users\webpd\workspace\project\yong_domi_java\src\main\java\domi\ApiServerInitializer.java
@@ -12,10 +12,11 @@ C:\Users\webpd\workspace\project\yong_domi_java\src\main\java\domi\core\JedisHel
 C:\Users\webpd\workspace\project\yong_domi_java\src\main\java\domi\service\UserAccess.java
 C:\Users\webpd\workspace\project\yong_domi_java\src\main\java\domi\core\ApiRequestParser.java
 C:\Users\webpd\workspace\project\yong_domi_java\src\main\java\domi\service\FindEnemy.java
+C:\Users\webpd\workspace\project\yong_domi_java\src\main\java\domi\service\Dummy.java
 C:\Users\webpd\workspace\project\yong_domi_java\src\main\java\domi\ApiServerConfig.java
 C:\Users\webpd\workspace\project\yong_domi_java\src\main\java\domi\service\ResultSend.java
 C:\Users\webpd\workspace\project\yong_domi_java\src\main\java\domi\core\DefaultApiRequest.java
 C:\Users\webpd\workspace\project\yong_domi_java\src\main\java\domi\service\ServiceException.java
 C:\Users\webpd\workspace\project\yong_domi_java\src\main\java\domi\core\ServiceDispatcher.java
-C:\Users\webpd\workspace\project\yong_domi_java\src\main\java\domi\service\showRanking.java
+C:\Users\webpd\workspace\project\yong_domi_java\src\main\java\domi\service\ShowRanking.java
 C:\Users\webpd\workspace\project\yong_domi_java\src\main\java\domi\service\UserUpdate.java

@@ -13,14 +13,14 @@ import domi.core.JedisHelper;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.Tuple; 
 
-@Service("showRanking")
+@Service("showMyRanking")
 @Scope("prototype")
 
-public class ShowRanking extends ApiRequestTemplate {
+public class ShowMyRanking extends ApiRequestTemplate {
     private static final JedisHelper helper = JedisHelper.getInstance();
 
    
-    public ShowRanking(Map<String, String> reqData) {
+    public ShowMyRanking(Map<String, String> reqData) {
         super(reqData);
     }
 
@@ -33,23 +33,21 @@ public class ShowRanking extends ApiRequestTemplate {
     public void service() throws ServiceException {
         Jedis jedis = null;
     	    	        
-        Set<Tuple> enemySet;        
-		Map<String, Integer> temp = new LinkedHashMap<String, Integer>();
+        Long myRank;
+        
+        String myId = "user:"+(String)this.reqData.get("UUID");
 		
         //try 
     	
     	try{                	  
 	        jedis = helper.getConnection();  
-	    	enemySet = jedis.zrevrangeWithScores("ranking", 0, 300);
+	        myRank = jedis.zrevrank("ranking", myId);
 	    	
-	   		for(Tuple tuple: enemySet){
-	   			temp.put(tuple.getElement(), (int)tuple.getScore());
-	    		 System.out.println(tuple.getElement() + "-" + tuple.getScore());
-	    		 }
+	        System.out.println("mRank "+ myRank);
 
 	        this.apiResult.addProperty("resultCode", "200");
             this.apiResult.addProperty("message", "get ranking success");  
-            this.apiResult.addProperty("enemySet", temp.toString());
+            this.apiResult.addProperty("myRank", myRank+1);
     		}
    	 
     	catch (Exception e){
