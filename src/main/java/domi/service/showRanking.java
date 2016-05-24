@@ -20,6 +20,7 @@ public class ShowRanking extends ApiRequestTemplate {
     private static final JedisHelper helper = JedisHelper.getInstance();
 
    
+    
     public ShowRanking(Map<String, String> reqData) {
         super(reqData);
     }
