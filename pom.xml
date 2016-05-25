@@ -136,12 +136,10 @@
             <configuration>
                 <finalName>${jar.name}</finalName>
                 <!-- jar 파일이 생성될 폴더 -->
-                <outputDirectory>${deploy.target.dir}</outputDirectory>
                 <archive>
                     <manifest>
                         <!-- public static void main() 함수가 있는 클래스 지정 -->
-                        <mainClass>domi.ApiServerMain</mainClass>
-                         
+                        <mainClass>domi.ApiServerMain</mainClass>                      
                         <!-- jar 파일 META-INF/MANIFEST.MF 에 클래스패스 정보 추가 -->
                         <addClasspath>true</addClasspath>
                          
