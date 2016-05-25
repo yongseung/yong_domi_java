@@ -6,7 +6,7 @@
   <Console name="console" target="SYSTEM_OUT">
    <PatternLayout/>
   </Console>
-  <File name="file" fileName="./logs/file/sample.log" append="false">
+  <File name="file" fileName="./logs/file/sample.log" append="true">
    <PatternLayout pattern="%d %5p [%c] %m%n"/>
   </File>
  </Appenders>
@@ -20,6 +20,8 @@
   
   <Root level="DEBUG">
    <AppenderRef ref="console"/>
+   <AppenderRef ref="file"/>
+   
   </Root>
   
  </Loggers>

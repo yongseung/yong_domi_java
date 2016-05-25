@@ -13,9 +13,6 @@ public class ApiServerMain {
             springContext.registerShutdownHook();
 
             ApiServer server = springContext.getBean(ApiServer.class);
-          
-          
-           
             server.start();
                     
 

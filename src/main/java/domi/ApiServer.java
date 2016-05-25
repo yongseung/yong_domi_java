@@ -38,7 +38,7 @@ public final class ApiServer {
 
             ServerBootstrap b = new ServerBootstrap();
             b.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class)
-                    .handler(new LoggingHandler(LogLevel.INFO))
+                    .handler(new LoggingHandler(LogLevel.TRACE))
                     .childHandler(new ApiServerInitializer(null));
 
             Channel ch = b.bind(8080).sync().channel();

@@ -86,6 +86,7 @@ public class ServiceDispatcher {
 		ApiRequest service = null;
 
 		try {
+			logger.trace(requestMap.toString());
 			service = (ApiRequest) springContext.getBean(beanName, requestMap);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -39,6 +39,7 @@ public class ShowMyRanking extends ApiRequestTemplate {
 		
         //try 
     	
+        
     	try{                	  
 	        jedis = helper.getConnection();  
 	        myRank = jedis.zrevrank("ranking", myId);
